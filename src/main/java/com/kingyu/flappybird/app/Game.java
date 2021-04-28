@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * 游戏主体，管理游戏的组件和窗口绘制
- *
+ * Main boddy of the game, manage he components and window drawing of the game
  * @author Kingyu
  */
 
@@ -40,6 +40,7 @@ public class Game extends Frame {
     private WelcomeAnimation welcomeAnimation; // 游戏未开始时对象
 
     // 在构造器中初始化
+    // Init the construcor
     public Game() {
         initFrame(); // 初始化游戏窗口
         setVisible(true); // 窗口默认为不可见，设置为可见
@@ -53,24 +54,30 @@ public class Game extends Frame {
         setLocation(FRAME_X, FRAME_Y); // 窗口初始位置
         setResizable(false); // 设置窗口大小不可变
         // 添加关闭窗口事件（监听窗口发生的事件，派发给参数对象，参数对象调用对应的方法）
+        // Add window listener event
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0); // 结束程序
             }
         });
-        addKeyListener(new BirdKeyListener()); // 添加按键监听
+       // 添加按键监听
+       // adding key (button) listener 
+        addKeyListener(new BirdKeyListener()); 
     }
 
     // 用于接收按键事件的对象的内部类
+    // Inner class which receive key events
     class BirdKeyListener implements KeyListener {
         // 按键按下，根据游戏当前的状态调用不同的方法
+        // Pressing the button will call different methods, based on the state of the game
         public void keyPressed(KeyEvent e) {
             int keycode = e.getKeyCode();
             switch (gameState) {
                 case GAME_READY:
                     if (keycode == KeyEvent.VK_SPACE) {
                         // 游戏启动界面时按下空格，小鸟振翅一次并开始受重力影响
+                        // the bird will be affected by the gravity when game the starts
                         bird.birdFlap();
                         bird.birdFall();
                         setGameState(GAME_START); // 游戏状态改变
@@ -79,6 +86,7 @@ public class Game extends Frame {
                 case GAME_START:
                     if (keycode == KeyEvent.VK_SPACE) {
                         //游戏过程中按下空格则振翅一次，并持续受重力影响
+                        //during the game the bird continue to get affected by the gravity
                         bird.birdFlap();
                         bird.birdFall();
                     }
@@ -86,6 +94,7 @@ public class Game extends Frame {
                 case STATE_OVER:
                     if (keycode == KeyEvent.VK_SPACE) {
                         //游戏结束时按下空格，重新开始游戏
+                        //at the end of the game press space to restart the game
                         resetGame();
                     }
                     break;
@@ -93,6 +102,7 @@ public class Game extends Frame {
         }
 
         // 重新开始游戏
+        //restart the game
         private void resetGame() {
             setGameState(GAME_READY);
             gameElement.reset();
@@ -100,6 +110,7 @@ public class Game extends Frame {
         }
 
         // 按键松开，更改按键状态标志
+        // when releasing the button it will change the status of the flag
         public void keyReleased(KeyEvent e) {
             int keycode = e.getKeyChar();
             if (keycode == KeyEvent.VK_SPACE) {
@@ -112,6 +123,7 @@ public class Game extends Frame {
     }
 
     // 初始化游戏中的各个对象
+    //method to initialize various objects in the game
     private void initGame() {
         background = new GameBackground();
         gameElement = new GameElementLayer();
@@ -121,6 +133,7 @@ public class Game extends Frame {
         setGameState(GAME_READY);
 
         // 启动用于刷新窗口的线程
+        //starting the thread to refersh the window of the game
         new Thread(() ->{
             while (true) {
                 repaint(); // 通过调用repaint(),让JVM调用update()
