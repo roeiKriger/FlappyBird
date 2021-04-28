@@ -9,6 +9,7 @@
 基于Java基础类库编写的Flappy Bird桌面平台版。
 
 具备原版所有功能，相较原版加入了移动型水管、优化了难度梯度。
+It has all the functions of the original version. Compared to the original version, a  water pipe is added.
 
 [RL FlappyBird](https://github.com/kingyuluk/RL-FlappyBird)
 基于本项目集成了Amazon的Deep Java Library (DJL)，可以使用强化学习(DQN)训练Flappy Bird
@@ -19,10 +20,10 @@
 
 * 运行源码中的 ```App:main``` 方法
 
-游戏使用空格键操作。
+游戏使用空格键操作。The game uses the space bar to operate.
 
 每局游戏随机刷新所有元素，小鸟受到重力作用会不断下坠，敲击空格键使小鸟振翅向上飞，游戏过程中需要玩家控制小鸟不断飞行，并注意躲避随机生成的水管，每飞过一对水管就会得分，飞行过程中如果撞到水管或掉落在地则游戏结束。
-
+All elements are randomly refreshed in each game. The bird will continue to fall under the action of gravity. Hit the space bar to make the bird flap its wings and fly upward. During the game, the player needs to control the bird to fly continuously and avoid randomly generated water pipes every time it flies. You will score points after passing a pair of water pipes. If you hit the water pipe or fall to the ground during the flight, the game is over.
 
 ## Preview
 
@@ -43,8 +44,10 @@
 * 文本编码格式为UTF-8，若注释出现乱码请修改编译器的文本编码格式
 
 * sun包在不同操作系统和不同版本的JDK中可能发生变化，因此无法确保工作在所有JAVA平台上
+The package may change in different operating systems and different versions of JDK, so it cannot be guaranteed to work on all JAVA platforms
 
 * 图片与音效资源皆来源于网络，仅供学习交流
+ Pictures and sound effects are all sourced from the Internet, only for learning and communication
 
 ## Package Contents
 * com.kingyu.flappybird.app    游戏主体
